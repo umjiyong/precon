@@ -17,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -62,29 +63,6 @@ public class ChannelController {
         tempChannel.setChannelContentsCategoryList(np);
 
         return new ResponseEntity(HttpStatus.OK);
-    }
-
-
-    @ApiOperation(value = "채널 구독", notes = "채널 구독")
-    @PutMapping("/subscribe/{chIdx}")
-    public ResponseEntity subscribeChannel(@PathVariable("chIdx") int channelIdx,@RequestBody UserRequestDto request){
-        Channel channel = channelService.findByIdx(channelIdx);
-        User user = userService.findByIdx(request.getUserIdx());
-
-        if (channel==null || user==null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
-
-        if (channel.getChannelSubscribeList().contains(user)) {
-            channel.getChannelSubscribeList().remove(user);
-            user.getUserSubscribeList().remove(channel);
-            return new ResponseEntity<>(new MessageResponseDto("구독 해지 완료"),HttpStatus.OK);
-        }
-        else{
-            channel.getChannelSubscribeList().add(user);
-            user.getUserSubscribeList().add(channel);
-            return new ResponseEntity<>(new MessageResponseDto("구독 완료"),HttpStatus.OK);
-        }
     }
 
     @ApiOperation(value = "채널 삭제", notes = "채널의 idx로 채널 정보 삭제")

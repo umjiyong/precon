@@ -1,6 +1,7 @@
 package com.gdh.precon.user.dto;
 
 import com.gdh.precon.channel.domain.Channel;
+import com.gdh.precon.subscribe.domain.Subscribe;
 import com.gdh.precon.user.domain.User;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +16,7 @@ public class UserResponseDto {
     private String userId;
     private String userPassword;
     private String userNickname;
-    private List<Channel> userSubscribeList;
+    private List<Subscribe> userSubscribeList;
 
     public UserResponseDto (User user){
         this.userIdx = user.getUserIdx();

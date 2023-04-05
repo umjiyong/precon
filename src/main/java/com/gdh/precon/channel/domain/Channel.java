@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gdh.precon.channelCategory.domain.ChannelCategory;
 import com.gdh.precon.contents.domain.Contents;
 import com.gdh.precon.contentsCategory.domain.ContentsCategory;
+import com.gdh.precon.subscribe.domain.Subscribe;
 import com.gdh.precon.user.domain.User;
 import lombok.*;
 
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Channel {
 
@@ -35,22 +36,18 @@ public class Channel {
     @OneToMany(mappedBy = "channel" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonIgnore
-    private List<User> channelSubscribeList = new ArrayList<>();
+    private List<Subscribe> channelSubscribeList = new ArrayList<>();
 
     @OneToMany(mappedBy = "channel" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonIgnore
     private List<Contents> channelContentsList = new ArrayList<>();
 
+    @Setter
     @OneToMany(mappedBy = "channel" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonIgnore
     private List<ContentsCategory> channelContentsCategoryList  = new ArrayList<>();
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_idx")
-    @JsonBackReference
-    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "channel_category_idx")
@@ -59,14 +56,13 @@ public class Channel {
 
 
     @Builder
-    public Channel (String channelName, String channelIntro ,List <User> channelSubscribeList, List<Contents> channelContentsList, List<ContentsCategory> channelContentsCategoryList, User user, ChannelCategory channelCategory) {
+    public Channel (String channelName, String channelIntro ,List <Subscribe> channelSubscribeList, List<Contents> channelContentsList, List<ContentsCategory> channelContentsCategoryList, ChannelCategory channelCategory) {
         this.channelName = channelName;
         this.channelIntro = channelIntro;
         this.channelScore = 0;
         this.channelSubscribeList = channelSubscribeList;
         this.channelContentsList = channelContentsList;
         this.channelContentsCategoryList = channelContentsCategoryList;
-        this.user = user;
         this.channelCategory = channelCategory;
     }
 }

@@ -6,6 +6,7 @@ import com.gdh.precon.channel.domain.Channel;
 import com.gdh.precon.channelCategory.domain.ChannelCategory;
 import com.gdh.precon.contents.domain.Contents;
 import com.gdh.precon.contentsCategory.domain.ContentsCategory;
+import com.gdh.precon.subscribe.domain.Subscribe;
 import com.gdh.precon.user.domain.User;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ public class ChannelResponseDto {
     private String channelName;
     private String channelIntro;
     private int channelScore;
-    private List<User> channelSubscribeList;
+    private List<Subscribe> channelSubscribeList;
     private List<Contents> channelContentsList;
     private List<ContentsCategory> channelContentsCategoryList;
     private int channelCategoryIdx;

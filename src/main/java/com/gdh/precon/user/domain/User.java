@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gdh.precon.channel.domain.Channel;
+import com.gdh.precon.subscribe.domain.Subscribe;
 import lombok.*;
 import javax.persistence.*;
 import java.util.*;
@@ -30,20 +31,14 @@ public class User {
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonIgnore
-    private List<Channel> userSubscribeList = new ArrayList<>();
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "channel_idx")
-    @JsonBackReference
-    private Channel channel;
+    private List<Subscribe> userSubscribeList = new ArrayList<>();
 
     @Builder
-    public User(String userId, String userPassword, String userNickname, List<Channel> userSubscribeList, Channel channel){
+    public User(String userId, String userPassword, String userNickname, List<Subscribe> userSubscribeList){
         this.userId = userId;
         this.userPassword = userPassword;
         this.userNickname = userNickname;
         this.userSubscribeList = userSubscribeList;
-        this.channel = channel;
     }
 
 }
