@@ -1,16 +1,11 @@
 package com.gdh.precon.comment.controller;
 
-import com.gdh.precon.channel.service.ChannelService;
 import com.gdh.precon.comment.domain.Comment;
 import com.gdh.precon.comment.dto.CommentRequestDto;
 import com.gdh.precon.comment.dto.CommentResponseDto;
 import com.gdh.precon.comment.service.CommentService;
 import com.gdh.precon.contents.domain.Contents;
-import com.gdh.precon.contents.dto.ContentsRequestDto;
-import com.gdh.precon.contents.dto.ContentsResponseDto;
 import com.gdh.precon.contents.service.ContentsService;
-import com.gdh.precon.contentsCategory.service.ContentsCategoryService;
-import com.gdh.precon.user.service.UserService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class CommentController {
 
-    private final UserService userService;
     private final ContentsService contentsService;
     private final CommentService commentService;
 
@@ -54,7 +48,6 @@ public class CommentController {
         Comment tempComment = Comment.builder()
                 .commentWriterIdx(request.getCommentWriterIdx())
                 .commentMaterial(request.getCommentMaterial())
-                .commentLike("")
                 .contents(tempContents)
                 .build();
 

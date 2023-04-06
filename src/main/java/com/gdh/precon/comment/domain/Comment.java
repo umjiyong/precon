@@ -1,12 +1,11 @@
 package com.gdh.precon.comment.domain;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.gdh.precon.channel.domain.Channel;
 import com.gdh.precon.childComment.domain.ChildComment;
 import com.gdh.precon.contents.domain.Contents;
+import com.gdh.precon.likes.domain.Likes;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,13 +31,15 @@ public class Comment {
     @Column(name = "comment_material")
     private String commentMaterial;
 
-    @Column(name = "comment_like")
-    private String commentLike;
-
     @OneToMany(mappedBy = "comment" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonIgnore
     private List<ChildComment> childCommentList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "comment",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JsonIgnore
+    private List<Likes> commentLikesList = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "contents_idx")
@@ -46,11 +47,9 @@ public class Comment {
     private Contents contents;
 
     @Builder
-    public Comment (int commentWriterIdx, String commentMaterial, String commentLike,List<ChildComment> childCommentList, Contents contents) {
+    public Comment (int commentWriterIdx, String commentMaterial, Contents contents) {
         this.commentWriterIdx = commentWriterIdx;
         this.commentMaterial = commentMaterial;
-        this.commentLike = commentLike;
-        this.childCommentList = childCommentList;
         this.contents = contents;
     }
 }

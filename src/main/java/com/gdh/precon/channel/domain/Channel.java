@@ -27,6 +27,9 @@ public class Channel {
     @Column(name = "channel_name")
     private String channelName;
 
+    @Column(name = "channel_profile_image")
+    private String channelProfileImage;
+
     @Column(name = "channel_intro")
     private String channelIntro;
 
@@ -56,8 +59,9 @@ public class Channel {
 
 
     @Builder
-    public Channel (String channelName, String channelIntro ,List <Subscribe> channelSubscribeList, List<Contents> channelContentsList, List<ContentsCategory> channelContentsCategoryList, ChannelCategory channelCategory) {
+    public Channel (String channelName, String channelProfileImage, String channelIntro ,List <Subscribe> channelSubscribeList, List<Contents> channelContentsList, List<ContentsCategory> channelContentsCategoryList, ChannelCategory channelCategory) {
         this.channelName = channelName;
+        this.channelProfileImage = channelProfileImage;
         this.channelIntro = channelIntro;
         this.channelScore = 0;
         this.channelSubscribeList = channelSubscribeList;

@@ -21,7 +21,7 @@ public class ContentsResponseDto {
     private String contentsMaterial;
     private LocalDateTime contents_date;
     private String contentsTagList;
-    private String contentsLike;
+    private int contentsLikes;
     private int contentsViewCount;
     private List<Comment> contentsCommentList;
     private int channelIdx;
@@ -35,7 +35,7 @@ public class ContentsResponseDto {
         this.contentsMaterial = contents.getContentsMaterial();
         this.contents_date = contents.getContentsDate();
         this.contentsTagList = contents.getContentsTagList();
-        this.contentsLike = contents.getContentsLike();
+        this.contentsLikes = contents.getContentsLikeList().size();
         this.contentsViewCount = contents.getContentsViewCount();
         this.contentsCommentList = contents.getContentsCommentList();
 

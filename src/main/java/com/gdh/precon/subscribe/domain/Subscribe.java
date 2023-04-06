@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Subscribe {
 
+    @Column(name = "subscribe_idx")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int subscribeIdx;

@@ -44,3 +44,8 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+bootJar {
+	mainClass = 'com.gdh.precon.PreconApplication'
+	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

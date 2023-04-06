@@ -1,9 +1,8 @@
 package com.gdh.precon.user.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.gdh.precon.channel.domain.Channel;
+import com.gdh.precon.likes.domain.Likes;
 import com.gdh.precon.subscribe.domain.Subscribe;
 import lombok.*;
 import javax.persistence.*;
@@ -33,12 +32,15 @@ public class User {
     @JsonIgnore
     private List<Subscribe> userSubscribeList = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JsonIgnore
+    private List<Likes> userLikesList = new ArrayList<>();
+
     @Builder
     public User(String userId, String userPassword, String userNickname, List<Subscribe> userSubscribeList){
         this.userId = userId;
         this.userPassword = userPassword;
         this.userNickname = userNickname;
-        this.userSubscribeList = userSubscribeList;
     }
-
 }
