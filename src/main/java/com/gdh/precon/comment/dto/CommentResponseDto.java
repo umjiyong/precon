@@ -15,6 +15,8 @@ public class CommentResponseDto {
     private int commentLikes;
     private List<Comment> childCommentList;
     private int contentsIdx;
+    private int wroteUserIdx;
+    private int wroteChannelIdx;
     private int parentCommentIdx;
 
     public CommentResponseDto(Comment comment){
@@ -22,11 +24,13 @@ public class CommentResponseDto {
         this.commentMaterial = comment.getCommentMaterial();
         this.commentLikes = comment.getCommentLikesList().size();
         this.childCommentList = comment.getChildCommentList();
-        if (comment.getContents()!=null) {
-            this.contentsIdx = comment.getContents().getContentsIdx();
+        this.contentsIdx = comment.getContents().getContentsIdx();
+
+        if(comment.getUser()!=null) {
+            this.wroteUserIdx = comment.getUser().getUserIdx();
         }
-        else{
-            this.contentsIdx = 0;
+        else {
+            this.wroteChannelIdx = comment.getChannel().getChannelIdx();
         }
         if (comment.getParentComment()!=null) {
             this.parentCommentIdx = comment.getParentComment().getCommentIdx();

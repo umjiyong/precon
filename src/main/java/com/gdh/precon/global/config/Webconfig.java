@@ -34,6 +34,5 @@ public class Webconfig implements WebMvcConfigurer {
                 .allowCredentials(true)
                 .allowedOrigins("http://localhost:8080")
                 .maxAge(3000);
-
     }
 }

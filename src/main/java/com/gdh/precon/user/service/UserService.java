@@ -105,7 +105,7 @@ public class UserService {
 
         target.setUserProfileImg(request.getUserProfileImg());
 
-        return new ResponseEntity("프로필 이미지 완료",HttpStatus.OK);
+        return new ResponseEntity("프로필 이미지 변경 완료",HttpStatus.OK);
     }
 
     @Transactional

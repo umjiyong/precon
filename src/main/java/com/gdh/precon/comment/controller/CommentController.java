@@ -18,49 +18,28 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/comment")
 @RequiredArgsConstructor
 public class CommentController {
-
-    private final ContentsService contentsService;
     private final CommentService commentService;
 
     @ApiOperation(value = "댓글 조회", notes = "댓글의 idx로 댓글의 정보를 조회")
     @GetMapping("/idx/{commentIdx}")
     public ResponseEntity findByCommentIdx(@PathVariable("commentIdx") int commentIdx){
 
-        Comment comment = commentService.findByIdx(commentIdx);
-
-        if (comment == null) { // 존재하지 않는 댓글
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
-        return new ResponseEntity(new CommentResponseDto(comment),HttpStatus.OK);
+        return commentService.findByCommentIdx(commentIdx);
     }
 
     @ApiOperation(value = "댓글 생성", notes = "댓글 생성")
     @PostMapping("/regist")
     public ResponseEntity registComment(@RequestBody CommentRequestDto request){
 
-
-        Contents tempContents = contentsService.findByIdx(request.getContentsIdx());
-
-        if(tempContents == null){
-            return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        }
-
-        Comment tempComment = Comment.builder()
-                .commentMaterial(request.getCommentMaterial())
-                .contents(tempContents)
-                .build();
-
-        commentService.registComment(tempComment);
-
-        return new ResponseEntity(HttpStatus.OK);
+        return commentService.registComment(request);
     }
 
     @ApiOperation(value = "댓글 삭제", notes = "댓글의 idx로 댓글 정보 삭제")
     @DeleteMapping("/idx/{commentIdx}")
-    public void deleteComment(@PathVariable("commentIdx") int commentIdx){
+    public ResponseEntity deleteComment(@PathVariable("commentIdx") int commentIdx){
 
         log.info("commentService - 댓글 삭제");
 
-        commentService.deleteComment(commentIdx);
+        return commentService.deleteComment(commentIdx);
     }
 }

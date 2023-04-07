@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ChannelRepository extends JpaRepository<Channel, Integer> {
 
+    Channel findByChannelIdx (int channelIdx);
+
     Channel findByChannelName(String channelName);
 
     String deleteByChannelIdx(int channelIdx);

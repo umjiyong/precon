@@ -41,21 +41,23 @@ public class Comment {
     @JsonBackReference
     private Contents contents;
 
+    //부모 Comment
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_comment_idx")
     @JsonBackReference
     private Comment parentComment;
 
+    //comment 작성 유저
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_idx")
+    @JoinColumn(name = "wrote_user_idx")
     @JsonBackReference
     private User user;
 
+    //comment 작성 채널 관리자
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "channel_idx")
+    @JoinColumn(name = "wrote_channel_idx")
     @JsonBackReference
     private Channel channel;
-
 
     @Builder
     public Comment (String commentMaterial, Contents contents, Comment parentComment, User user, Channel channel) {

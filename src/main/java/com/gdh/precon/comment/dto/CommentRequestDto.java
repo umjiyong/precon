@@ -7,7 +7,9 @@ import java.time.LocalDateTime;
 @Data
 public class CommentRequestDto {
     private int commentIdx;
-    private int commentWriterIdx;
     private int contentsIdx;
     private String commentMaterial;
+    private int wroteUserIdx;
+    private int wroteChannelIdx;
+    private int parentCommentIdx;
 }
