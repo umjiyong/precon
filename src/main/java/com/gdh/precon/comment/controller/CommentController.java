@@ -46,7 +46,6 @@ public class CommentController {
         }
 
         Comment tempComment = Comment.builder()
-                .commentWriterIdx(request.getCommentWriterIdx())
                 .commentMaterial(request.getCommentMaterial())
                 .contents(tempContents)
                 .build();

@@ -42,14 +42,14 @@ public class LikesController {
 
     @ApiOperation(value = "콘텐츠의 좋아요 정보 조회", notes = "콘텐츠의 idx로 좋아요 정보")
     @PostMapping("/contents/{contentsIdx}/")
-    public ResponseEntity findByContentsIdx(@PathVariable("contentsIdx") int contentsIdx, @RequestBody int userIdx){
+    public ResponseEntity findByContentsIdx(@PathVariable("contentsIdx") int contentsIdx, @RequestParam int userIdx){
 
         return likesService.findByContentsIdx(userIdx,contentsIdx);
     }
 
     @ApiOperation(value = "댓글의 좋아요 정보 조회", notes = "댓글의 idx로 좋아요 정보")
     @PostMapping("/comment/{commentIdx}/")
-    public ResponseEntity findByCommentIdx(@PathVariable("commentIdx") int commentIdx, @RequestBody int userIdx){
+    public ResponseEntity findByCommentIdx(@PathVariable("commentIdx") int commentIdx, @RequestParam int userIdx){
 
         return likesService.findByCommentIdx(userIdx,commentIdx);
     }

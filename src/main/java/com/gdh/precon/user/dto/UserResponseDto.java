@@ -1,6 +1,6 @@
 package com.gdh.precon.user.dto;
 
-import com.gdh.precon.channel.domain.Channel;
+import com.gdh.precon.comment.domain.Comment;
 import com.gdh.precon.subscribe.domain.Subscribe;
 import com.gdh.precon.user.domain.User;
 import lombok.Data;
@@ -16,13 +16,17 @@ public class UserResponseDto {
     private String userId;
     private String userPassword;
     private String userNickname;
+    private String userProfileImg;
     private List<Subscribe> userSubscribeList;
+    private List<Comment> userCommentList;
 
     public UserResponseDto (User user){
         this.userIdx = user.getUserIdx();
         this.userId = user.getUserId();
         this.userPassword = user.getUserPassword();
         this.userNickname = user.getUserNickname();
+        this.userProfileImg = user.getUserProfileImg();
         this.userSubscribeList = user.getUserSubscribeList();
+        this.userCommentList = user.getUserCommentList();
     }
 }

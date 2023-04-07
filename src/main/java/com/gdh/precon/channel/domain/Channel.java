@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gdh.precon.channelCategory.domain.ChannelCategory;
+import com.gdh.precon.comment.domain.Comment;
 import com.gdh.precon.contents.domain.Contents;
 import com.gdh.precon.contentsCategory.domain.ContentsCategory;
 import com.gdh.precon.subscribe.domain.Subscribe;
@@ -51,6 +52,11 @@ public class Channel {
     @JsonManagedReference
     @JsonIgnore
     private List<ContentsCategory> channelContentsCategoryList  = new ArrayList<>();
+
+    @OneToMany(mappedBy = "channel" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JsonIgnore
+    private List<Comment> channelCommentList  = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "channel_category_idx")

@@ -3,13 +3,11 @@ package com.gdh.precon.comment.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.gdh.precon.childComment.domain.ChildComment;
+import com.gdh.precon.channel.domain.Channel;
 import com.gdh.precon.contents.domain.Contents;
 import com.gdh.precon.likes.domain.Likes;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.gdh.precon.user.domain.User;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -25,16 +23,13 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int commentIdx;
 
-    @Column(name = "comment_writer_idx")
-    private int commentWriterIdx;
-
     @Column(name = "comment_material")
-    private String commentMaterial;
+    String commentMaterial;
 
-    @OneToMany(mappedBy = "comment" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "parentComment" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonIgnore
-    private List<ChildComment> childCommentList = new ArrayList<>();
+    List<Comment> childCommentList = new ArrayList<>();
 
     @OneToMany(mappedBy = "comment",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -46,10 +41,28 @@ public class Comment {
     @JsonBackReference
     private Contents contents;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parent_comment_idx")
+    @JsonBackReference
+    private Comment parentComment;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_idx")
+    @JsonBackReference
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "channel_idx")
+    @JsonBackReference
+    private Channel channel;
+
+
     @Builder
-    public Comment (int commentWriterIdx, String commentMaterial, Contents contents) {
-        this.commentWriterIdx = commentWriterIdx;
+    public Comment (String commentMaterial, Contents contents, Comment parentComment, User user, Channel channel) {
         this.commentMaterial = commentMaterial;
         this.contents = contents;
+        this.parentComment = parentComment;
+        this.user = user;
+        this.channel = channel;
     }
 }

@@ -16,11 +16,10 @@ public abstract class UserRepositoryImpl implements UserRepository {
     @Autowired
     private final UserRepository jpaQueryFactory;
 
-    public String deleteByUserIdx(int userIdx){
+    public void deleteByUserIdx(int userIdx){
         em.createQuery("Delete From User u where u.userIdx = user_idx", User.class)
                .setParameter("user_idx",userIdx).getResultList();
 
-        return "Loc : UserRepository 유저정보 삭제";
     }
 }
 

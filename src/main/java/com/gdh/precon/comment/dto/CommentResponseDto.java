@@ -1,6 +1,5 @@
 package com.gdh.precon.comment.dto;
 
-import com.gdh.precon.childComment.domain.ChildComment;
 import com.gdh.precon.comment.domain.Comment;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -12,15 +11,14 @@ import java.util.List;
 public class CommentResponseDto {
 
     private int commentIdx;
-    private int commentWriterIdx;
     private String commentMaterial;
     private int commentLikes;
-    private List<ChildComment> childCommentList;
+    private List<Comment> childCommentList;
     private int contentsIdx;
+    private int parentCommentIdx;
 
     public CommentResponseDto(Comment comment){
         this.commentIdx = comment.getCommentIdx();
-        this.commentWriterIdx = comment.getCommentWriterIdx();
         this.commentMaterial = comment.getCommentMaterial();
         this.commentLikes = comment.getCommentLikesList().size();
         this.childCommentList = comment.getChildCommentList();
@@ -29,6 +27,9 @@ public class CommentResponseDto {
         }
         else{
             this.contentsIdx = 0;
+        }
+        if (comment.getParentComment()!=null) {
+            this.parentCommentIdx = comment.getParentComment().getCommentIdx();
         }
     }
 }

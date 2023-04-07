@@ -8,4 +8,6 @@ public class UserRequestDto {
     private String userId;
     private String userPassword;
     private String userNickname;
+    private String userProfileImg;
+    private String changingUserPassword;
 }

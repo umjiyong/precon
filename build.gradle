@@ -32,6 +32,9 @@ dependencies {
 	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 	implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.2'
 
+//아이디 검증을 위한 validation
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
 	compileOnly 'org.projectlombok:lombok'
 //	2022. 12. 19 이후 스프링 버전에서는 runtimeOnly 'com.mysql:mysql-connector-j'를 써야함
 //	runtimeOnly 'mysql:mysql-connector-java'

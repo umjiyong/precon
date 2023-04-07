@@ -5,8 +5,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+    User findByUserIdx(int userIdx);
+
     User findByUserId(String userId);
 
-    String deleteByUserIdx(int userIdx);
+    void deleteByUserIdx(int userIdx);
 
+    boolean existsByUserNickname(String userNickname);
 }
