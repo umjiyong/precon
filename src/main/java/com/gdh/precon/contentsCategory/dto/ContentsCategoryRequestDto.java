@@ -6,4 +6,5 @@ import lombok.Data;
 public class ContentsCategoryRequestDto {
         private int contentsCategoryIdx;
         private String contentsCategoryName;
+        private int channelBoardIdx;
 }

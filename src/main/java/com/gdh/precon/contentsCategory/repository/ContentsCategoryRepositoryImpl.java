@@ -1,6 +1,5 @@
 package com.gdh.precon.contentsCategory.repository;
 
-import com.gdh.precon.channel.repository.ChannelRepository;
 import com.gdh.precon.channelCategory.domain.ChannelCategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -7,6 +7,5 @@ public interface ChannelCategoryRepository extends JpaRepository<ChannelCategory
 
     ChannelCategory findByChannelCategoryName(String channelCategoryName);
 
-    String deleteByChannelCategoryIdx(int channelCategoryIdx);
-
+    String deleteByChannelCategoryName(String channelCategoryName);
 }

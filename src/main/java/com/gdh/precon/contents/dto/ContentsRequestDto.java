@@ -2,16 +2,16 @@ package com.gdh.precon.contents.dto;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Data
 public class ContentsRequestDto {
     private int contentsIdx;
+    private boolean contentsCharged;
+    private boolean contentsChargedIndividual;
+    private int contentsPrice;
+    private String contentsProfileImg;
     private String contentsTitle;
-    private String contentsWriter;
     private String contentsMaterial;
-    private LocalDateTime contentsDate;
     private String contentsTagList;
-    private String contentsLike;
-    private int contentsViewCount;
+    private int channelIdx;
+    private int contentsCategoryIdx;
 }

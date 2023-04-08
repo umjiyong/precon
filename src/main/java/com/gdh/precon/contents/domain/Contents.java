@@ -8,10 +8,7 @@ import com.gdh.precon.channel.domain.Channel;
 import com.gdh.precon.comment.domain.Comment;
 import com.gdh.precon.contentsCategory.domain.ContentsCategory;
 import com.gdh.precon.likes.domain.Likes;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -31,17 +28,17 @@ public class Contents {
     @Column(name = "contents_charged")
     private boolean contentsCharged;
 
-    @Column(name = "contents_charged_Individual")
+    @Column(name = "contents_charged_individual")
     private boolean contentsChargedIndividual;
+
+    @Column(name = "contents_price")
+    private int contentsPrice;
 
     @Column(name = "contents_title")
     private String contentsTitle;
 
-    @Column(name = "contents_profile_image")
-    private String contentsProfileImage;
-
-    @Column(name = "contents_writer")
-    private String contentsWriter;
+    @Column(name = "contents_profile_img")
+    private String contentsProfileImg;
 
     @Column(name = "contents_material")
     private String contentsMaterial;
@@ -54,7 +51,6 @@ public class Contents {
 
     @Column(name = "contents_view_count")
     private int contentsViewCount;
-
 
     @OneToMany(mappedBy = "contents" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -79,11 +75,13 @@ public class Contents {
 
 
     @Builder
-    public Contents (String contentsTitle,String contentsProfileImage, String contentsWriter
-        ,String contentsMaterial,String contentsTagList, Channel channel, ContentsCategory contentsCategory) {
+    public Contents (boolean contentsCharged, boolean contentsChargedIndividual, int contentsPrice,String contentsTitle,String contentsProfileImg,
+        String contentsMaterial,String contentsTagList, Channel channel, ContentsCategory contentsCategory) {
+        this.contentsCharged = contentsCharged;
+        this.contentsChargedIndividual = contentsChargedIndividual;
+        this.contentsPrice = contentsPrice;
         this.contentsTitle = contentsTitle;
-        this.contentsProfileImage = contentsProfileImage;
-        this.contentsWriter = contentsWriter;
+        this.contentsProfileImg = contentsProfileImg;
         this.contentsMaterial = contentsMaterial;
         this.contentsDate = LocalDateTime.now();
         this.contentsViewCount = 0;
@@ -91,4 +89,22 @@ public class Contents {
         this.channel = channel ;
         this.contentsCategory = contentsCategory;
     }
+
+    public void viewCounting(){
+        this.contentsViewCount++;
+    }
+
+    public void changeTitle(String contentsTitle) {
+        this.contentsTitle =contentsTitle;
+    }
+    public void changeMaterial(String contentsMaterial) {
+        this.contentsMaterial =contentsMaterial;
+    }
+    public void changeProfileImg(String contentsProfileImg) {
+        this.contentsProfileImg =contentsProfileImg;
+    }
+    public void changePrice(int contentsPrice) {
+        this.contentsPrice =contentsPrice;
+    }
+
 }

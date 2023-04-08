@@ -1,10 +1,7 @@
 package com.gdh.precon.contents.dto;
 
-import com.gdh.precon.channel.domain.Channel;
 import com.gdh.precon.comment.domain.Comment;
 import com.gdh.precon.contents.domain.Contents;
-import com.gdh.precon.contentsCategory.domain.ContentsCategory;
-import com.gdh.precon.user.domain.User;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
@@ -16,10 +13,13 @@ import java.util.List;
 public class ContentsResponseDto {
 
     private int contentsIdx;
+    private boolean contentsCharged;
+    private boolean contentsChargedIndividual;
+    private int contentsPrice;
+    private String contentsProfileImg;
     private String contentsTitle;
-    private String contentsWriter;
     private String contentsMaterial;
-    private LocalDateTime contents_date;
+    private LocalDateTime contentsDate;
     private String contentsTagList;
     private int contentsLikes;
     private int contentsViewCount;
@@ -30,10 +30,13 @@ public class ContentsResponseDto {
     public ContentsResponseDto(Contents contents){
 
         this.contentsIdx = contents.getContentsIdx();
-        this.contentsTitle = contents.getContentsTitle();
-        this.contentsWriter = contents.getContentsWriter();
+        this.contentsCharged = contents.isContentsCharged();
+        this.contentsChargedIndividual = contents.isContentsChargedIndividual();
+        this.contentsPrice = contents.getContentsPrice();
+        this.contentsProfileImg = contents.getContentsProfileImg();
+        this.contentsTitle = contents.getContentsTitle();;
         this.contentsMaterial = contents.getContentsMaterial();
-        this.contents_date = contents.getContentsDate();
+        this.contentsDate = contents.getContentsDate();
         this.contentsTagList = contents.getContentsTagList();
         this.contentsLikes = contents.getContentsLikeList().size();
         this.contentsViewCount = contents.getContentsViewCount();

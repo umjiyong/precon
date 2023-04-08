@@ -27,9 +27,7 @@ public class ChannelCategory {
     private List<Channel> channelCategoryChannelList= new ArrayList<>();
 
     @Builder
-    public ChannelCategory (String channelCategoryName, List<Channel> channelCategoryChannelList) {
-
+    public ChannelCategory (String channelCategoryName) {
         this.channelCategoryName = channelCategoryName;
-        this.channelCategoryChannelList = channelCategoryChannelList;
     }
 }

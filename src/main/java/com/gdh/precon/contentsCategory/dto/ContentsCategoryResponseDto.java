@@ -19,6 +19,11 @@ public class ContentsCategoryResponseDto {
                 this.contentsCategoryIdx = contentsCategory.getContentsCategoryIdx();
                 this.contentsCategoryName = contentsCategory.getContentsCategoryName();
                 this.contentsCategoryMaterialList = contentsCategory.getContentsCategoryMaterialList();
+                if (contentsCategory.getChannelBoard()==null){
+                        this.channelBoardIdx = 0;
+                }
+                else{
                 this.channelBoardIdx = contentsCategory.getChannelBoard().getChannelBoardIdx();
+                }
         }
 }

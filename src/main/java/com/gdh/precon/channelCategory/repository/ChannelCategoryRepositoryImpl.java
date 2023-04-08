@@ -1,6 +1,5 @@
 package com.gdh.precon.channelCategory.repository;
 
-import com.gdh.precon.channel.repository.ChannelRepository;
 import com.gdh.precon.channelCategory.domain.ChannelCategory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +16,9 @@ public abstract class ChannelCategoryRepositoryImpl implements ChannelCategoryRe
     @Autowired
     private final ChannelCategoryRepository jpaQueryFactory;
 
-    public String deleteByChannelCategoryIdx(int channelCategoryIdx){
-        em.createQuery("Delete From ChannelCategory c where c.channelCategoryIdx = channel_category_idx", ChannelCategory.class)
-               .setParameter("channel_category_idx",channelCategoryIdx).getResultList();
+    public String deleteByChannelCategoryName(String channelCategoryName){
+        em.createQuery("Delete From ChannelCategory c where c.channelCategoryName = channel_category_name", ChannelCategory.class)
+               .setParameter("channel_category_name",channelCategoryName).getResultList();
 
         return "Loc : ChannelCategoryRepository - 채널카테고리 삭제";
     }
