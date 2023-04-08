@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ChannelCategoryController {
 
-    private final ChannelService channelService;
     private final ChannelCategoryService channelCategoryService;
 
 

@@ -1,15 +1,10 @@
 package com.gdh.precon.comment.controller;
 
-import com.gdh.precon.comment.domain.Comment;
 import com.gdh.precon.comment.dto.CommentRequestDto;
-import com.gdh.precon.comment.dto.CommentResponseDto;
 import com.gdh.precon.comment.service.CommentService;
-import com.gdh.precon.contents.domain.Contents;
-import com.gdh.precon.contents.service.ContentsService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +33,7 @@ public class CommentController {
     @DeleteMapping("/idx/{commentIdx}")
     public ResponseEntity deleteComment(@PathVariable("commentIdx") int commentIdx){
 
-        log.info("commentService - 댓글 삭제");
+        log.info("commentController - 댓글 삭제");
 
         return commentService.deleteComment(commentIdx);
     }

@@ -2,8 +2,6 @@ package com.gdh.precon.comment.dto;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Data
 public class CommentRequestDto {
     private int commentIdx;

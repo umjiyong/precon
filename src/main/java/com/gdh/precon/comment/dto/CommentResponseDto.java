@@ -4,6 +4,7 @@ import com.gdh.precon.comment.domain.Comment;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -18,6 +19,7 @@ public class CommentResponseDto {
     private int wroteUserIdx;
     private int wroteChannelIdx;
     private int parentCommentIdx;
+    private LocalDateTime commentWrittenTime;
 
     public CommentResponseDto(Comment comment){
         this.commentIdx = comment.getCommentIdx();
@@ -35,5 +37,7 @@ public class CommentResponseDto {
         if (comment.getParentComment()!=null) {
             this.parentCommentIdx = comment.getParentComment().getCommentIdx();
         }
+
+        this.commentWrittenTime = comment.getCommentWrittenTime();
     }
 }

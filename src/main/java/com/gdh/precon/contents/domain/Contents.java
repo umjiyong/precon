@@ -28,6 +28,12 @@ public class Contents {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int contentsIdx;
 
+    @Column(name = "contents_charged")
+    private boolean contentsCharged;
+
+    @Column(name = "contents_charged_Individual")
+    private boolean contentsChargedIndividual;
+
     @Column(name = "contents_title")
     private String contentsTitle;
 

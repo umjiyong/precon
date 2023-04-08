@@ -60,6 +60,7 @@ public class ChannelController {
         List<ContentsCategory> np = new ArrayList<>();
         np.add(contentsCategoryService.findByIdx(contentsCategoryService.registContentsCategory(ContentsCategory.builder().contentsCategoryName("뉴스레터").channel(tempChannel).build())));
         np.add(contentsCategoryService.findByIdx(contentsCategoryService.registContentsCategory(ContentsCategory.builder().contentsCategoryName("플레이리스트").channel(tempChannel).build())));
+        //5개의 채널 보드 만들기
         tempChannel.setChannelContentsCategoryList(np);
 
         return new ResponseEntity(HttpStatus.OK);

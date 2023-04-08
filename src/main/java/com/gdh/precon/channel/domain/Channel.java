@@ -3,12 +3,12 @@ package com.gdh.precon.channel.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.gdh.precon.channelBoard.domain.ChannelBoard;
 import com.gdh.precon.channelCategory.domain.ChannelCategory;
 import com.gdh.precon.comment.domain.Comment;
 import com.gdh.precon.contents.domain.Contents;
 import com.gdh.precon.contentsCategory.domain.ContentsCategory;
 import com.gdh.precon.subscribe.domain.Subscribe;
-import com.gdh.precon.user.domain.User;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,22 +18,28 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Channel {
+public class Channel { // 판매자 계정
 
     @Column(name = "channel_idx")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int channelIdx;
 
+    @Column(name = "channel_charged") // 유료 (프리미엄), 무료 (파트너)
+    private boolean channelCharged;
+
     @Column(name = "channel_name")
     private String channelName;
 
+    @Setter
     @Column(name = "channel_profile_image")
     private String channelProfileImage;
 
+    @Setter
     @Column(name = "channel_intro")
     private String channelIntro;
 
+    @Setter
     @Column(name = "channel_score")
     private int channelScore;
 
@@ -47,11 +53,10 @@ public class Channel {
     @JsonIgnore
     private List<Contents> channelContentsList = new ArrayList<>();
 
-    @Setter
     @OneToMany(mappedBy = "channel" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
     @JsonIgnore
-    private List<ContentsCategory> channelContentsCategoryList  = new ArrayList<>();
+    private List<ChannelBoard> channelBoardList  = new ArrayList<>();
 
     @OneToMany(mappedBy = "channel" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -65,14 +70,13 @@ public class Channel {
 
 
     @Builder
-    public Channel (String channelName, String channelProfileImage, String channelIntro ,List <Subscribe> channelSubscribeList, List<Contents> channelContentsList, List<ContentsCategory> channelContentsCategoryList, ChannelCategory channelCategory) {
+    public Channel (boolean channelCharged, String channelName, String channelProfileImage, String channelIntro , List<ChannelBoard> channelBoardList, ChannelCategory channelCategory) {
+        this.channelCharged = channelCharged;
         this.channelName = channelName;
         this.channelProfileImage = channelProfileImage;
         this.channelIntro = channelIntro;
         this.channelScore = 0;
-        this.channelSubscribeList = channelSubscribeList;
-        this.channelContentsList = channelContentsList;
-        this.channelContentsCategoryList = channelContentsCategoryList;
+        this.channelBoardList = channelBoardList;
         this.channelCategory = channelCategory;
     }
 }

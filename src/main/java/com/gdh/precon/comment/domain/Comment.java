@@ -10,6 +10,7 @@ import com.gdh.precon.user.domain.User;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,9 @@ public class Comment {
 
     @Column(name = "comment_material")
     String commentMaterial;
+
+    @Column(name = "comment_written_time")
+    LocalDateTime commentWrittenTime;
 
     @OneToMany(mappedBy = "parentComment" ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference
@@ -59,6 +63,7 @@ public class Comment {
     @JsonBackReference
     private Channel channel;
 
+
     @Builder
     public Comment (String commentMaterial, Contents contents, Comment parentComment, User user, Channel channel) {
         this.commentMaterial = commentMaterial;
@@ -66,5 +71,6 @@ public class Comment {
         this.parentComment = parentComment;
         this.user = user;
         this.channel = channel;
+        this.commentWrittenTime = LocalDateTime.now();
     }
 }

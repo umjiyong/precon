@@ -1,8 +1,6 @@
 package com.gdh.precon.comment.repository;
 
 import com.gdh.precon.comment.domain.Comment;
-import com.gdh.precon.contents.domain.Contents;
-import com.gdh.precon.contents.repository.ContentsRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
