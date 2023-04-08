@@ -32,12 +32,12 @@ public class Channel { // 판매자 계정
     private String channelName;
 
     @Setter
-    @Column(name = "channel_profile_image")
-    private String channelProfileImage;
-
-    @Setter
     @Column(name = "channel_intro")
     private String channelIntro;
+
+    @Setter
+    @Column(name = "channel_profile_img")
+    private String channelProfileImg;
 
     @Setter
     @Column(name = "channel_score")
@@ -70,13 +70,17 @@ public class Channel { // 판매자 계정
 
 
     @Builder
-    public Channel (boolean channelCharged, String channelName, String channelProfileImage, String channelIntro , List<ChannelBoard> channelBoardList, ChannelCategory channelCategory) {
+    public Channel (boolean channelCharged, String channelName, String channelProfileImg, String channelIntro , List<ChannelBoard> channelBoardList, ChannelCategory channelCategory) {
         this.channelCharged = channelCharged;
         this.channelName = channelName;
-        this.channelProfileImage = channelProfileImage;
+        this.channelProfileImg = channelProfileImg;
         this.channelIntro = channelIntro;
         this.channelScore = 0;
         this.channelBoardList = channelBoardList;
         this.channelCategory = channelCategory;
+    }
+
+    public void initializeChannelBoardList (List<ChannelBoard> initialChannelBoard){
+        this.channelBoardList = initialChannelBoard;
     }
 }

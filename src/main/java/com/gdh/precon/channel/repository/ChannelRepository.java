@@ -11,4 +11,6 @@ public interface ChannelRepository extends JpaRepository<Channel, Integer> {
     Channel findByChannelName(String channelName);
 
     String deleteByChannelIdx(int channelIdx);
+
+    boolean existsByChannelName(String channelName);
 }

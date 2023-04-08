@@ -13,12 +13,12 @@ public class ContentsCategoryResponseDto {
         private int contentsCategoryIdx;
         private String contentsCategoryName;
         private List<Contents> contentsCategoryMaterialList;
-        private int channelIdx;
+        private int channelBoardIdx;
 
         public ContentsCategoryResponseDto(ContentsCategory contentsCategory){
                 this.contentsCategoryIdx = contentsCategory.getContentsCategoryIdx();
                 this.contentsCategoryName = contentsCategory.getContentsCategoryName();
                 this.contentsCategoryMaterialList = contentsCategory.getContentsCategoryMaterialList();
-                this.channelIdx = contentsCategory.getChannel().getChannelIdx();
+                this.channelBoardIdx = contentsCategory.getChannelBoard().getChannelBoardIdx();
         }
 }

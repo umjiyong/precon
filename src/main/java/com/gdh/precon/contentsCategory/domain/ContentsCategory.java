@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gdh.precon.channel.domain.Channel;
+import com.gdh.precon.channelBoard.domain.ChannelBoard;
 import com.gdh.precon.contents.domain.Contents;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -33,14 +34,14 @@ public class ContentsCategory {
     private List<Contents> contentsCategoryMaterialList= new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "channel_idx")
+    @JoinColumn(name = "channel_board_idx")
     @JsonBackReference
-    private Channel channel;
+    private ChannelBoard channelBoard;
 
     @Builder
-    public ContentsCategory (String contentsCategoryName, List<Contents> contentsCategoryMaterialList, Channel channel) {
+    public ContentsCategory (String contentsCategoryName, List<Contents> contentsCategoryMaterialList, ChannelBoard channelBoard) {
         this.contentsCategoryName = contentsCategoryName;
         this.contentsCategoryMaterialList = contentsCategoryMaterialList;
-        this.channel = channel;
+        this.channelBoard = channelBoard;
     }
 }

@@ -5,7 +5,9 @@ import lombok.Data;
 @Data
 public class ChannelRequestDto {
     private int channelIdx;
+    private boolean channelCharged;
     private String channelName;
     private String channelIntro;
-    private int channelScore;
+    private String channelProfileImg;
+    private String channelCategoryName;
 }
