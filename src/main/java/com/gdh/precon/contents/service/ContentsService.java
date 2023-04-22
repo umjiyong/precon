@@ -22,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class ContentsService {
 
-    private final UserRepository userRepository;
     private final ChannelRepository channelRepository;
     private final ContentsRepository contentsRepository;
     private final ContentsCategoryRepository contentsCategoryRepository;
