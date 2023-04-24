@@ -109,12 +109,17 @@ public class UserService {
     }
 
     @Transactional
-    public String deleteUser(int userIdx){
+    public ResponseEntity deleteUser(int userIdx){
+
+        if (userRepository.existsById(userIdx)) {
+            return new ResponseEntity("존재하지 않는 id",HttpStatus.BAD_REQUEST);
+        }
+        
 
         userRepository.deleteByUserIdx(userIdx);
         log.info("유저 정보 삭제 : {}", userIdx);
 
-        return "유저 정보 삭제 완료";
+        return new ResponseEntity("유저 정보 삭제 완료",HttpStatus.OK);
     }
 
 

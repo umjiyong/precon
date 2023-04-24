@@ -46,8 +46,12 @@ public class CommentService {
             return new ResponseEntity("존재하지 않는 콘텐츠",HttpStatus.BAD_REQUEST);
         }
 
-        if(request.getWroteUserIdx()!=0 && request.getWroteChannelIdx()!=0){
+        if(request.getWroteUserIdx()==0 || request.getWroteChannelIdx()==0){
             return new ResponseEntity("작성자와 작성 채널이 오기입 되었습니다.",HttpStatus.BAD_REQUEST);
+        }
+
+        if(request.getParentCommentIdx()!=0 && !commentRepository.existsById(request.getParentCommentIdx())){
+            return new ResponseEntity("상위 댓글이 오기입 되었습니다.",HttpStatus.BAD_REQUEST);
         }
 
         Comment comment = Comment.builder()

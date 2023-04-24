@@ -53,7 +53,7 @@ public class UserController {
 
     @ApiOperation(value = "유저 탈퇴", notes = "유저의 idx로 유저 탈퇴")
     @DeleteMapping("/idx/{userIdx}")
-    public String deleteUser(@PathVariable("userIdx") int userIdx){
+    public ResponseEntity deleteUser(@PathVariable("userIdx") int userIdx){
 
         log.info("userService - 유저 탈퇴");
 
