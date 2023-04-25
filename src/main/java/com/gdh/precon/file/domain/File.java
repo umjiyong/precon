@@ -7,17 +7,17 @@ import javax.persistence.*;
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Image {
+public class File {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="image_idx")
-    private int imageIdx;
+    @Column(name="file_idx")
+    private int fileIdx;
 
-    @Column(name="image_url")
-    private String imageUrl;
+    @Column(name="file_url")
+    private String fileUrl;
 
     @Builder
-    public Image(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public File(String fileUrl) {
+        this.fileUrl = fileUrl;
     }
 }

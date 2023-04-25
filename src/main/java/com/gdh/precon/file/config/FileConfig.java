@@ -11,6 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.time.LocalDateTime;
+import java.util.Base64;
 
 @Component
 @RequiredArgsConstructor
@@ -20,11 +23,20 @@ public class FileConfig {
         @Value(("${S3.BUCKETNAME}"))
         private String bucketName;
 
-        public String uploadImage(String folderName, MultipartFile file) {
-//            if(file.isEmpty() || !file.getContentType().startsWith("image")){
-//                return null; // 에러 처리 필요
-//            }
-            String fileName = file.getOriginalFilename().substring(0,file.getOriginalFilename().lastIndexOf('.'));
+        public String uploadFile(String folderName, MultipartFile file) throws UnsupportedEncodingException {
+
+            if(file.isEmpty()){
+                return null; // 에러 처리 필요
+            }
+
+            System.out.println(file.getContentType());
+
+
+            Base64.Encoder encoder = Base64.getEncoder();
+            byte[] nameEncode = encoder.encode((file.getOriginalFilename().substring(0,file.getOriginalFilename().lastIndexOf('.'))+LocalDateTime.now()).getBytes());
+            String encodedFilename = new String(nameEncode, "UTF8");
+
+            String fileName = folderName+"/"+encodedFilename;
 
             ObjectMetadata objectMetadata = new ObjectMetadata();
             objectMetadata.setContentType(file.getContentType());
@@ -37,12 +49,10 @@ public class FileConfig {
                 return null; // 에러 처리 필요
             }
 
-
-
             return fileName;
         }
 
-        public void deleteImage(String url) {
+        public void deleteFile(String url) {
             File file = new File(url);
             file.delete();
         }
