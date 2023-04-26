@@ -3,6 +3,7 @@ package com.gdh.precon.user.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gdh.precon.comment.domain.Comment;
+import com.gdh.precon.contentsPurchase.Domain.ContentsPurchase;
 import com.gdh.precon.likes.domain.Likes;
 import com.gdh.precon.subscribe.domain.Subscribe;
 import lombok.*;
@@ -44,6 +45,11 @@ public class User {
     @JsonManagedReference
     @JsonIgnore
     private List<Subscribe> userSubscribeList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JsonIgnore
+    private List<ContentsPurchase> userPurchaseList = new ArrayList<>();
 
     @OneToMany(mappedBy = "user",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference

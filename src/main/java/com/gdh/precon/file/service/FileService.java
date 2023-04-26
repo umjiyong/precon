@@ -41,15 +41,18 @@ public class FileService {
     }
 
     @Transactional
-    public void deleteFile(int fileIdx) {
+    public ResponseEntity deleteFile(int fileIdx) {
 
             File target = fileRepository.findById(fileIdx).get();
             if (target==null){
-                log.info("없는 파일입니다.");
-                return;
+                return new ResponseEntity("로컬 DB에 존재하지 않는 파일입니다.",HttpStatus.BAD_REQUEST);
             }
-            fileConfig.deleteFile(target.getFileUrl());
+
+            if (fileConfig.deleteFile(target.getFileUrl())==null){
+                return new ResponseEntity("클라우드에서 파일이 존재하지 않습니다.",HttpStatus.BAD_REQUEST);
+            }
             fileRepository.delete(target);
             log.info("파일 삭제 완료");
+            return new ResponseEntity("삭제 완료.",HttpStatus.OK);
     }
 }

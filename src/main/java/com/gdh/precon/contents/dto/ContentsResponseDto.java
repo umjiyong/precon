@@ -21,6 +21,7 @@ public class ContentsResponseDto {
     private String contentsMaterial;
     private LocalDateTime contentsDate;
     private String contentsTagList;
+    private int contentsPurchases;
     private int contentsLikes;
     private int contentsViewCount;
     private List<Comment> contentsCommentList;
@@ -38,6 +39,7 @@ public class ContentsResponseDto {
         this.contentsMaterial = contents.getContentsMaterial();
         this.contentsDate = contents.getContentsDate();
         this.contentsTagList = contents.getContentsTagList();
+        this.contentsPurchases = contents.getContentsPurchaseList().size();
         this.contentsLikes = contents.getContentsLikeList().size();
         this.contentsViewCount = contents.getContentsViewCount();
         this.contentsCommentList = contents.getContentsCommentList();

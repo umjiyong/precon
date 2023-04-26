@@ -1,6 +1,7 @@
 package com.gdh.precon.user.dto;
 
 import com.gdh.precon.comment.domain.Comment;
+import com.gdh.precon.contentsPurchase.Domain.ContentsPurchase;
 import com.gdh.precon.subscribe.domain.Subscribe;
 import com.gdh.precon.user.domain.User;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class UserResponseDto {
     private String userNickname;
     private String userProfileImg;
     private List<Subscribe> userSubscribeList;
+    private List<ContentsPurchase> userPurchaseList;
     private List<Comment> userCommentList;
 
     public UserResponseDto (User user){
@@ -27,6 +29,7 @@ public class UserResponseDto {
         this.userNickname = user.getUserNickname();
         this.userProfileImg = user.getUserProfileImg();
         this.userSubscribeList = user.getUserSubscribeList();
+        this.userPurchaseList = user.getUserPurchaseList();
         this.userCommentList = user.getUserCommentList();
     }
 }

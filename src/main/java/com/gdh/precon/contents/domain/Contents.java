@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.gdh.precon.channel.domain.Channel;
 import com.gdh.precon.comment.domain.Comment;
 import com.gdh.precon.contentsCategory.domain.ContentsCategory;
+import com.gdh.precon.contentsPurchase.Domain.ContentsPurchase;
 import com.gdh.precon.likes.domain.Likes;
 import lombok.*;
 
@@ -56,6 +57,11 @@ public class Contents {
     @JsonManagedReference
     @JsonIgnore
     private List<Comment> contentsCommentList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "contents",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonManagedReference
+    @JsonIgnore
+    private List<ContentsPurchase> ContentsPurchaseList = new ArrayList<>();
 
     @OneToMany(mappedBy = "contents",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonManagedReference

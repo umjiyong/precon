@@ -22,16 +22,13 @@ public class FileController {
     @ApiOperation(value = "파일 등록", notes = "이미지,동영상 등 파일 등록")
     @PostMapping("/regist")
     public ResponseEntity registFile(String folderName, @RequestPart(value="file") MultipartFile file) throws UnsupportedEncodingException {
-        System.out.println(folderName);
-
         return fileService.uploadFile(folderName,file);
     }
 
-    @ApiOperation(value = "파일 삭제", notes = "파일 삭제")
+    @ApiOperation(value = "파일 삭제", notes = "파일 idx에 해당하는 파일 삭제")
     @DeleteMapping("/delete")
     public void deleteFile(@RequestBody int fileIdx){
 
         fileService.deleteFile(fileIdx);
     }
-
 }
