@@ -1,5 +1,6 @@
 package com.gdh.precon.user.service;
 
+import com.gdh.precon.global.service.JwtService;
 import com.gdh.precon.user.domain.User;
 import com.gdh.precon.user.dto.UserRequestDto;
 import com.gdh.precon.user.dto.UserResponseDto;
@@ -20,6 +21,7 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final JwtService jwtService;
 
     public User findByUserId (String userId){
         return userRepository.findByUserId(userId);
@@ -44,10 +46,9 @@ public class UserService {
 
         if (target.getUserPassword().equals(request.getUserPassword()))
         {
+            String jwt = jwtService.create("userIdx",target.getUserIdx(),"Bearer");
 
-//            JWT 서비스 구현하기!!!
-
-            return new ResponseEntity(new UserResponseDto(target),HttpStatus.OK);
+            return new ResponseEntity(jwt,HttpStatus.OK);
         }
         else { // 로그인 실패
             return new ResponseEntity("비밀번호 불일치",HttpStatus.BAD_REQUEST);
